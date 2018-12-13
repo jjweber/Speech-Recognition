@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <button id="btnGiveCommand">Give Command!</button>
+    <br><br>
+    <span id="message"></span>
+    <br><br>
+
+    <input type="checkbox" id="chkSteve"> Steve Rogers
+    <br>
+    <input type="checkbox" id="chkTony"> Tony Stark
+    <br>
+    <input type="checkbox" id="chkBruce"> Bruce Banner
+    <br>
+    <input type="checkbox" id="chkNick"> Nick Fury
+
+    <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
+    <script>
+        const message = document.querySelector('#message');
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
+        var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
+
+        const grammar = '#JSGF V1.0;';
+
+        var recognition = new SpeechRecognition();
+        var speechRecognitionList = new SpeechGrammarList();
+        speechRecognitionList.addFromString(grammar, 1);
+
+        recognition.grammars = speechRecognitionList;
+        //recognition.continuous = false;
+        recognition.lang = 'en-US';
+        recognition.interimResults = false;
+
+        // onresult
+        // onspeechend
+        // onerror
+
+        recognition.onresult = (event) => {
+            const last = event.results.length - 1;
+            const command = event.results[last][0].transcript;
+            message.textContent = 'Voice Input: ' + command + '.';
+
+            if(command.toLowerCase() === 'select steve') {
+                responsiveVoice.speak('Selecting Steve!');
+                document.querySelector('#chkSteve').checked = true;
+            }
+            if(command.toLowerCase() === 'deselect steve') {
+                responsiveVoice.speak('De-selecting Steve!');
+                document.querySelector('#chkSteve').checked = false;
+            }
+
+            if(command.toLowerCase() === 'select tony') {
+                responsiveVoice.speak('Selecting Tony!');
+                document.querySelector('#chkTony').checked = true;
+            }
+            if(command.toLowerCase() === 'deselect tony') {
+                responsiveVoice.speak('De-selecting Tony!');
+                document.querySelector('#chkTony').checked = false;
+            }
+
+            if(command.toLowerCase() === 'select bruce') {
+                responsiveVoice.speak('Selecting Bruce!');
+                document.querySelector('#chkBruce').checked = true;
+            }
+            if(command.toLowerCase() === 'deselect bruce') {
+                responsiveVoice.speak('De-selecting Bruce!');
+                document.querySelector('#chkBruce').checked = false;
+            }
+
+            if(command.toLowerCase() === 'select nick') {
+                responsiveVoice.speak('Selecting Nick!');
+                document.querySelector('#chkNick').checked = true;
+            }
+            if(command.toLowerCase() === 'deselect nick') {
+                responsiveVoice.speak('De-selecting Nick!');
+                document.querySelector('#chkNick').checked = false;
+            }
+
+            if(command.toLowerCase(). === 'how are you') {
+                responsiveVoice.speak('I am doing fine. Thank you!');
+            }
+        }
+
+        recognition.onspeechend = () => {
+            recognition.stop();
+        }
+
+        recognition.onerror = (event) => {
+            message.textContent = 'Error occured in recognition: ' + event.error;
+        }
+
+        document.querySelector('#btnGiveCommand').addEventListener('click', () => {
+            recognition.start();
+        });
+
+    </script>
+</body>
+</html>
