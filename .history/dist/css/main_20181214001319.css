@@ -1,0 +1,11 @@
+body {
+    padding: 10px;
+}
+
+#btnGiveCommand {
+    /* background: green; */
+}
+
+#btnGiveCommand span {
+    margin-left: 5px;
+}

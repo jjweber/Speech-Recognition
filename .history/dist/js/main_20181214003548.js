@@ -23,25 +23,20 @@ recognition.onresult = (event) => {
 
     // Select commands to check checkboxes and respond with action
     if(command.toLowerCase() === 'select steve') {
-        responsiveVoice.speak('Selecting Steve!');
         document.querySelector('#chkSteve').checked = true;
     }
     if(command.toLowerCase() === 'select tony') {
-        responsiveVoice.speak('Selecting Tony!');
         document.querySelector('#chkTony').checked = true;
     }
     if(command.toLowerCase() === 'select bruce') {
-        responsiveVoice.speak('Selecting Bruce!');
         document.querySelector('#chkBruce').checked = true;
     }
     if(command.toLowerCase() === 'select nick') {
-        responsiveVoice.speak('Selecting Nick!');
         document.querySelector('#chkNick').checked = true;
     }
 
     // De-select commands to un-select checkboxes and respond with action
     if(command.toLowerCase() === 'deselect steve') {
-        responsiveVoice.speak('De-selecting Steve!');
         document.querySelector('#chkSteve').checked = false;
     }
     if(command.toLowerCase() === 'deselect tony') {

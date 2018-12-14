@@ -23,7 +23,6 @@ recognition.onresult = (event) => {
 
     // Select commands to check checkboxes and respond with action
     if(command.toLowerCase() === 'select steve') {
-        responsiveVoice.speak('Selecting Steve!');
         document.querySelector('#chkSteve').checked = true;
     }
     if(command.toLowerCase() === 'select tony') {
